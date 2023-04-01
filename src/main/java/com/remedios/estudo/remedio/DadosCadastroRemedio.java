@@ -1,5 +1,6 @@
 package com.remedios.estudo.remedio;
 
+// DTO
 
 public record DadosCadastroRemedio(
 	
