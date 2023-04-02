@@ -1,6 +1,7 @@
 package com.remedios.estudo.remedio;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -89,5 +90,42 @@ public class Remedio {
 		this.laboratorio = laboratorio;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, laboratorio, lote, nome, quantidade, validade, via);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Remedio other = (Remedio) obj;
+		return Objects.equals(id, other.id) && laboratorio == other.laboratorio && Objects.equals(lote, other.lote)
+				&& Objects.equals(nome, other.nome) && quantidade == other.quantidade
+				&& Objects.equals(validade, other.validade) && via == other.via;
+	}
+
+	public Remedio() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Remedio(Long id, String nome, Via via, String lote, int quantidade, LocalDate validade,
+			Laboratorio laboratorio) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.via = via;
+		this.lote = lote;
+		this.quantidade = quantidade;
+		this.validade = validade;
+		this.laboratorio = laboratorio;
+	}
+
+	
 	
 }
