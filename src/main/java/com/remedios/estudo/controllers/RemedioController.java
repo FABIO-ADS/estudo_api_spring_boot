@@ -1,5 +1,7 @@
 package com.remedios.estudo.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +21,7 @@ public class RemedioController {
 	private RemedioRepository repository;
 	
 	@PostMapping // Envio de dados
-	public void cadastrar(@RequestBody DadosCadastroRemedio dados) {
+	public void cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
 		repository.save(new Remedio(dados));
 	}
 

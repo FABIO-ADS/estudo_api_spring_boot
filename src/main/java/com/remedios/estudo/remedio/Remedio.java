@@ -1,5 +1,7 @@
 package com.remedios.estudo.remedio;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -32,8 +34,8 @@ public class Remedio {
 	private Via via;	
 	
 	private String lote;
-	private String quantidade; 
-	private String validade; 
+	private int quantidade; 
+	private LocalDate validade; 
 	
 	// Enun => Constante fixa, tem que criar o enum
 	@Enumerated(EnumType.STRING)
@@ -46,7 +48,7 @@ public class Remedio {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public Via getVia() {
 		return via;
 	}
@@ -63,19 +65,19 @@ public class Remedio {
 		this.lote = lote;
 	}
 
-	public String getQuantidade() {
+	public int getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(String quantidade) {
+	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public String getValidade() {
+	public LocalDate getValidade() {
 		return validade;
 	}
 
-	public void setValidade(String validade) {
+	public void setValidade(LocalDate validade) {
 		this.validade = validade;
 	}
 
@@ -87,5 +89,5 @@ public class Remedio {
 		this.laboratorio = laboratorio;
 	}
 
-
+	
 }
