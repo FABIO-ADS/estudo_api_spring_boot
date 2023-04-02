@@ -13,10 +13,39 @@ import javax.persistence.Table;
 @Entity(name="remedio")
 public class Remedio {
 	
+	public Remedio(DadosCadastroRemedio dados) {
+		this.nome=dados.nome();
+		this.via=dados.via();
+		this.lote=dados.lote();
+		this.quantidade=dados.quantidade();
+		this.validade=dados.validade();
+		this.laboratorio=dados.laboratorio();		
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome; 
+	
+	// Enun => Constante fixa, tem que criar o enum
+	@Enumerated(EnumType.STRING)
+	private Via via;	
+	
+	private String lote;
+	private String quantidade; 
+	private String validade; 
+	
+	// Enun => Constante fixa, tem que criar o enum
+	@Enumerated(EnumType.STRING)
+	private Laboratorio laboratorio;
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	
 	public Via getVia() {
 		return via;
@@ -56,27 +85,6 @@ public class Remedio {
 
 	public void setLaboratorio(Laboratorio laboratorio) {
 		this.laboratorio = laboratorio;
-	}
-
-	// Enun => Constante fixa, tem que criar o enum
-	@Enumerated(EnumType.STRING)
-	private Via via;
-	
-	
-	private String lote;
-	private String quantidade; 
-	private String validade; 
-	
-	// Enun => Constante fixa, tem que criar o enum
-	@Enumerated(EnumType.STRING)
-	private Laboratorio laboratorio;
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 
