@@ -12,35 +12,43 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 // ENTIDADE
-@Table(name="Remedio")
-@Entity(name="remedio")
+@Table(name = "Remedio")
+@Entity(name = "remedio")
 public class Remedio {
-	
+
 	public Remedio(DadosCadastroRemedio dados) {
-		this.nome=dados.nome();
-		this.via=dados.via();
-		this.lote=dados.lote();
-		this.quantidade=dados.quantidade();
-		this.validade=dados.validade();
-		this.laboratorio=dados.laboratorio();		
+		this.nome = dados.nome();
+		this.via = dados.via();
+		this.lote = dados.lote();
+		this.quantidade = dados.quantidade();
+		this.validade = dados.validade();
+		this.laboratorio = dados.laboratorio();
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome; 
-	
+	private String nome;
+
 	// Enun => Constante fixa, tem que criar o enum
 	@Enumerated(EnumType.STRING)
-	private Via via;	
-	
+	private Via via;
+
 	private String lote;
-	private int quantidade; 
-	private LocalDate validade; 
-	
+	private int quantidade;
+	private LocalDate validade;
+
 	// Enun => Constante fixa, tem que criar o enum
 	@Enumerated(EnumType.STRING)
 	private Laboratorio laboratorio;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -111,7 +119,6 @@ public class Remedio {
 
 	public Remedio() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Remedio(Long id, String nome, Via via, String lote, int quantidade, LocalDate validade,
@@ -126,6 +133,23 @@ public class Remedio {
 		this.laboratorio = laboratorio;
 	}
 
-	
-	
+	public void atualizarInformacoes(DadosAtualizarRemedio dados) {
+
+		if (dados.nome() != null) {
+			// pegar o dado que ta vindo do DTO e substitui-lo
+			this.nome = dados.nome();
+		}
+
+		if (dados.via() != null) {
+			// pegar o dado que ta vindo do DTO e substitui-lo
+			this.via = dados.via();
+		}
+		
+		if (dados.laboratorio() != null) {
+			// pegar o dado que ta vindo do DTO e substitui-lo
+			this.laboratorio = dados.laboratorio();
+		}
+
+	}
+
 }

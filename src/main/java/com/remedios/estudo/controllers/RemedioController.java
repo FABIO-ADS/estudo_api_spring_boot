@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,5 +37,18 @@ public class RemedioController {
 	public List<DadosListagemRemedio> listar () {
 		return repository.findAll().stream().map(DadosListagemRemedio::new).toList();
 	}
+	
+
+	// Método PUT
+	@PutMapping
+	@Transactional // quando der algum problema, ele faz um rolbeck, será revertida a situação
+	public void atualizar (@RequestBody @Valid com.remedios.estudo.remedio.DadosAtualizarRemedio dados) {
+		
+		// Criar variável pra buscar o di no BD
+		var remedio = repository.getReferenceById(dados.id());
+		
+		remedio.atualizarInformacoes(dados);
+	}
+	
 
 }
